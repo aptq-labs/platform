@@ -3,14 +3,9 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  // Enable CORS for frontend connection (e.g., app running on port 3000/5173/etc)
   app.enableCors();
-
-  await app.listen(process.env.PORT ?? 8000);
-  console.log(
-    `API Gateway is running on: http://localhost:${process.env.PORT ?? 8000}`,
-  );
+  const port = process.env.PORT ?? 6002;
+  await app.listen(port);
+  console.log(`Auth Service is running on: http://localhost:${port}`);
 }
-
 bootstrap().catch((err) => console.error(err));
